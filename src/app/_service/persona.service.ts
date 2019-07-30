@@ -19,4 +19,12 @@ export class PersonaService {
   listar() {
     return this.http.get<Persona[]>(this.urlWS);
   }
+
+  registrar(persona: Persona) {
+    return this.http.post(this.urlWS, persona);
+  }
+
+  modificar(persona: Persona) {
+    return this.http.put(this.urlWS, persona);
+  }
 }

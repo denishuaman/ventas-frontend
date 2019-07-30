@@ -30,4 +30,8 @@ export class PersonaComponent implements OnInit {
     })
   }
 
+  filtrar(valor: string) {
+    this.dataSource.filter = valor.trim().toLowerCase();
+  }
+
 }

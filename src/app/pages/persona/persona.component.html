@@ -1,9 +1,15 @@
 <mat-toolbar>PERSONAS</mat-toolbar>
 <div class="example-container mat-elevation z8">
 
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="filtrar($event.target.value)" placeholder="Buscar persona">
+        </mat-form-field>
+    </div>
+
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="idPersona">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>CÓDIGO</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Código</mat-header-cell>
             <mat-cell *matCellDef="let row">{{row.idPersona}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="nombres">
