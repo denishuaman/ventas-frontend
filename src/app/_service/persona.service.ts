@@ -27,4 +27,8 @@ export class PersonaService {
   modificar(persona: Persona) {
     return this.http.put(this.urlWS, persona);
   }
+
+  eliminar(idPersona: number) {
+    return this.http.delete(`${this.urlWS}/${idPersona}`);
+  }
 }

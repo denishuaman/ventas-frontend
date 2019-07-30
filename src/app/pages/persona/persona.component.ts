@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } fro
 import { Persona } from 'src/app/_model/persona';
 import { PersonaService } from 'src/app/_service/persona.service';
 import { PersonaDialogoComponent } from './persona-dialogo/persona-dialogo.component';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-persona',
@@ -11,7 +12,7 @@ import { PersonaDialogoComponent } from './persona-dialogo/persona-dialogo.compo
 })
 export class PersonaComponent implements OnInit {
 
-  nombresColumnas = ['idPersona', 'nombres', 'apellidos'];
+  nombresColumnas = ['idPersona', 'nombres', 'apellidos', 'acciones'];
   dataSource: MatTableDataSource<Persona>;
 
   @ViewChild(MatPaginator, { static: true })
@@ -20,7 +21,7 @@ export class PersonaComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   sort: MatSort;
 
-  constructor(private personaService: PersonaService, private dialogo: MatDialog, 
+  constructor(private personaService: PersonaService, private dialogo: MatDialog,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class PersonaComponent implements OnInit {
     });
 
     this.personaService.mensaje.subscribe(detalle => {
-      this.snackBar.open(detalle, 'Aviso', {duration: 2000});
+      this.snackBar.open(detalle, 'Aviso', { duration: 2000 });
     });
 
     //listando las personas
@@ -54,6 +55,15 @@ export class PersonaComponent implements OnInit {
       width: '300px',
       data: p
     });
+  }
+
+  eliminar(persona: Persona) {
+    this.personaService.eliminar(persona.idPersona).pipe(switchMap(() => {
+      return this.personaService.listar();
+    })).subscribe(personasRegistradas => {
+      this.personaService.cambioPersona.next(personasRegistradas);
+      this.personaService.mensaje.next('Se eliminó a \"' + persona.nombres.concat(' ').concat(persona.apellidos) + '\" del registro de personas');
+    })
   }
 
 }

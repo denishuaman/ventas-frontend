@@ -20,6 +20,13 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</mat-header-cell>
             <mat-cell *matCellDef="let row">{{row.apellidos}}</mat-cell>
         </ng-container>
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-button color="primary" (click)="abrirDialogo(row)">Actualizar</button>
+                <button mat-button color="accent" (click)="eliminar(row)">Eliminar</button>
+            </mat-cell>
+        </ng-container>
 
         <mat-header-row *matHeaderRowDef="nombresColumnas"></mat-header-row>
         <mat-row *matRowDef="let row; columns: nombresColumnas"></mat-row>
