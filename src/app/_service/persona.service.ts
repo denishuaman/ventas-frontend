@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PersonaService {
 
-  cambioPersona = new Subject<Persona>();
+  cambioPersona = new Subject<Persona[]>();
   mensaje = new Subject<string>();
 
   urlWS: string = `${environment.HOST}/personas`;

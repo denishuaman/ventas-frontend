@@ -9,12 +9,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PersonaDialogoComponent } from './pages/persona/persona-dialogo/persona-dialogo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonaComponent,
-    ProductoComponent
+    ProductoComponent,
+    PersonaDialogoComponent
+  ],
+  entryComponents: [
+    PersonaDialogoComponent
   ],
   imports: [
     BrowserModule,
