@@ -1,5 +1,5 @@
 <form class="example-container" [formGroup]="formGroup" (ngSubmit)="registrarOActualizar()" #espForm="ngForm">
-
+    <mat-toolbar>REGISTRO DE PRODUCTO</mat-toolbar>
     <div [hidden]="true">
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Id de producto" required formControlName="idProducto">
@@ -13,15 +13,16 @@
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Marca del producto" required formControlName="marca">
     </mat-form-field>
-
-    <button mat-raised-button color="primary" type="submit" [disabled]="espForm.invalid">
-        <mat-icon>done</mat-icon>
-        <span>Aceptar</span>
-    </button>
-    <button mat-raised-button color="accent" routerLink='/producto' type="button">
-        <mat-icon>close</mat-icon>
-        <span>Cancelar</span>
-    </button>
+    <div align="center">
+        <button mat-raised-button color="primary" type="submit" [disabled]="espForm.invalid">
+            <mat-icon>done</mat-icon>
+            <span>Aceptar</span>
+        </button>
+        <button mat-raised-button color="accent" routerLink='/producto' type="button">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
 </form>
 
 <br />

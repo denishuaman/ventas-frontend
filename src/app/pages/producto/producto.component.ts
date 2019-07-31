@@ -25,8 +25,8 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit() {
 
-    this.productoService.cambioProducto.subscribe(productosRegistrados => {
-      this.dataSource = new MatTableDataSource(productosRegistrados);
+    this.productoService.cambioProducto.subscribe(productos => {
+      this.dataSource = new MatTableDataSource(productos);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -37,8 +37,8 @@ export class ProductoComponent implements OnInit {
       });
     });
 
-    this.productoService.listar().subscribe(productosRegistrados => {
-      this.dataSource = new MatTableDataSource(productosRegistrados);
+    this.productoService.listar().subscribe(productos => {
+      this.dataSource = new MatTableDataSource(productos);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
@@ -54,6 +54,8 @@ export class ProductoComponent implements OnInit {
     })).subscribe(productosRegistrados => {
       this.productoService.cambioProducto.next(productosRegistrados);
       this.productoService.mensaje.next('\"' + producto.nombre + '\" de marca \"' + producto.marca + '\" fue eliminado');
+    }, error => {
+      this.productoService.mensaje.next('NO se puede eliminar el(la) \"'+producto.nombre+'\" de la marca \"'+producto.marca+'\". Es posible que esté registrado en una venta')
     });
   }
 }

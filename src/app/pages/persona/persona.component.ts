@@ -33,7 +33,7 @@ export class PersonaComponent implements OnInit {
     });
 
     this.personaService.mensaje.subscribe(detalle => {
-      this.snackBar.open(detalle, 'Aviso', { duration: 2000 });
+      this.snackBar.open(detalle, 'Aviso', { duration: 5000 });
     });
 
     //listando las personas
@@ -63,7 +63,9 @@ export class PersonaComponent implements OnInit {
     })).subscribe(personasRegistradas => {
       this.personaService.cambioPersona.next(personasRegistradas);
       this.personaService.mensaje.next('Se eliminó a \"' + persona.nombres.concat(' ').concat(persona.apellidos) + '\" del registro de personas');
-    })
+    }, error => {
+      this.personaService.mensaje.next('NO se puede eliminar a \"'+persona.nombres.concat(' ').concat(persona.apellidos)+'. Es posible que esté registrado en una venta')
+    });
   }
 
 }

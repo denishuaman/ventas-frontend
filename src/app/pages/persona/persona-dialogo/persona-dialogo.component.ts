@@ -33,6 +33,8 @@ export class PersonaDialogoComponent implements OnInit {
       })).subscribe(personasRegistradas => {
         this.personaService.cambioPersona.next(personasRegistradas);
         this.personaService.mensaje.next('Se registró la persona');
+      }, error => {
+        this.personaService.mensaje.next('Ocurrió un error al registrar a la persona. Debe ingresar todos los campos');
       });
     } else {
       // modificando a la persona.
@@ -41,6 +43,8 @@ export class PersonaDialogoComponent implements OnInit {
       })).subscribe(personasRegistradas => {
         this.personaService.cambioPersona.next(personasRegistradas);
         this.personaService.mensaje.next('Se modificó a la persona seleccionada');
+      }, error => {
+        this.personaService.mensaje.next('Ocurrió un error al modificar a la persona. Debe ingresar todos los campos');
       });
     }
     this.refDialogo.close();
